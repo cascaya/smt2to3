@@ -17,14 +17,13 @@ ORGDIR="templates"
 NEWDIR=
 
 #handel incomming vars
-while getopts hon: OPT; do
+while getopts ho:n: OPT; do
     case "$OPT" in
         h) usage; exit 0;;
         o) ORGDIR=$OPTARG;;
         n) NEWDIR=$OPTARG;;
     esac
 done
-
 shift $(( $OPTIND - 1 ))
 
 
@@ -38,8 +37,8 @@ elif [ -z "$NEWDIR" ]; then
 fi
  
 # create new dir if not exists
-if [ ! -d  "$NEWDIR" ]; then 
-    mkdir $NEWDIR;
+if [ ! -d "$NEWDIR" ]; then 
+    mkdir -p $NEWDIR;
 fi
 
 
@@ -54,5 +53,4 @@ for i in $(find $ORGDIR -name "*.tpl"); do
     
     ruby tplsmarty2to3.rb $i >$NEWFILE;
 
-done;
-
+done
