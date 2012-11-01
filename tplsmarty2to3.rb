@@ -83,6 +83,7 @@ class Processor
         line = line.gsub(/\s+\}/, "}")
         line = line.gsub(/(\$\S+)\|isset/, 'isset(\1)')
         line = line.gsub(/value=(\S+\.tpl)\}/, 'value="\1"}')
+        line = line.gsub(/\|numberformat/, "|number_format")
 
         return line
     end
